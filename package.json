@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "main": "lib/index",
   "bin": {
-    "touch-script-cli": "bin/index",
-    "touch-script": "bin/index",
-    "tsc": "bin/index"
+    "touch-script-cli": "bin/touch-script.js",
+    "touch-script": "bin/touch-script.js",
+    "tsc": "bin/touch-script.js"
   },
   "files": [
     "*.md",
