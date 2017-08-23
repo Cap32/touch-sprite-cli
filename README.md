@@ -20,6 +20,23 @@ tsc -h
 ```
 
 
+## 集成到 Sublime Text 3
+
+1. 在终端获取 `node` 路径 (macOS/linux 用户 `which node`, windows 用户 `where node`)
+2. 在终端获取 `touch-script-cli` 路径 (macOS/linux 用户 `which tsc`, windows 用户 `where tsc`
+3. 创建 `touch-script.sublime-build` 文件到 Packages 目录，写入：
+
+```json
+{
+    "cmd": ["<touch-script-cli 路径>", "push", "-f=$file"],
+    "selector": "source.lua",
+    "path": "<node 路径>"
+}
+```
+
+当然，也可以用类似的方法集成到其它 IDE
+
+
 ## License
 
 MIT
