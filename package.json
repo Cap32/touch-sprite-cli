@@ -26,7 +26,11 @@
   "engines": {
     "node": ">=4"
   },
-  "keywords": [],
+  "keywords": [
+    "touch-script",
+    "cli",
+    "touch-script-remote"
+  ],
   "license": "MIT",
   "dependencies": {
     "configstore": "^3.1.1",
