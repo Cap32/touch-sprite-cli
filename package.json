@@ -22,7 +22,7 @@
     "preversion": "yarn test && yarn build"
   },
   "author": "cap32",
-  "repository": "cantonjs/touch-script-cli",
+  "repository": "Cap32/touch-script-cli",
   "engines": {
     "node": ">=4"
   },
