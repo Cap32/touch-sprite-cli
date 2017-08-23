@@ -14,7 +14,7 @@
     "lib"
   ],
   "scripts": {
-    "cli": "cross-env NODE_ENV=development node bin",
+    "cli": "cross-env NODE_ENV=development node bin/touch-script",
     "start": "yarn test -- --watchAll",
     "test": "cross-env NODE_ENV=development jest",
     "prebuild": "rimraf lib",
