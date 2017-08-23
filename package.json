@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "main": "lib/index",
   "bin": {
+    "touch-script-cli": "bin/index",
+    "touch-script": "bin/index",
     "tsc": "bin/index"
   },
   "files": [

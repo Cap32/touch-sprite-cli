@@ -6,16 +6,14 @@ import { ensureTarget } from './utils';
 import { readFile } from 'fs-extra';
 import { parse } from 'path';
 
-export async function upload({ target, clientFile, file, type }) {
+export async function upload(argv, log = console.log) {
 	try {
-		target = ensureTarget(target);
-		if (!clientFile) {
-			clientFile = `/${parse(file).base}`;
-		}
-		const { dir, base } = parse(clientFile);
+		const { target, clientFile, file, type } = argv;
+		const clientFilePath = clientFile || `/${parse(file).base}`;
+		const { dir, base } = parse(clientFilePath);
 		const auth = await getToken();
 		const body = await readFile(file, 'utf-8');
-		const res = await fetch(`${target}/upload`, {
+		const res = await fetch(`${ensureTarget(target)}/upload`, {
 			method: 'POST',
 			headers: {
 				auth,
@@ -27,7 +25,7 @@ export async function upload({ target, clientFile, file, type }) {
 			body,
 		});
 		const result = await res.text();
-		console.log(result);
+		log && log(result);
 		return result === 'ok';
 	}
 	catch (err) {
@@ -35,15 +33,15 @@ export async function upload({ target, clientFile, file, type }) {
 	}
 }
 
-export async function run({ target }) {
+export async function run(argv, log = console.log) {
 	try {
-		target = ensureTarget(target);
+		const { target } = argv;
 		const auth = await getToken();
-		const res = await fetch(`${target}/runLua`, {
+		const res = await fetch(`${ensureTarget(target)}/runLua`, {
 			headers: { auth },
 		});
 		const result = await res.text();
-		console.log(result);
+		log && log(result);
 		return result === 'ok';
 	}
 	catch (err) {
@@ -52,19 +50,14 @@ export async function run({ target }) {
 }
 
 export async function push(argv) {
-	await upload(argv) && await run(argv);
+	await upload(argv, false) && await run(argv);
 }
 
 export async function getDeviceName({ target }) {
-	try {
-		target = ensureTarget(target);
-		const res = await fetch(`${target}/devicename`);
-		const deviceName = await res.text();
-		console.log(deviceName);
-	}
-	catch (err) {
-		console.error(err);
-	}
+	target = ensureTarget(target);
+	const res = await fetch(`${target}/devicename`);
+	const result = await res.text();
+	console.log(result);
 }
 
 export function set(argv) {

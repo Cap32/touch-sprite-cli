@@ -37,7 +37,7 @@ const upload = {
 
 // eslint-disable-next-line
 yargs
-	.usage(`${name} <command> [args]`)
+	.usage(`$0 <command> [args]`)
 	.demand(1, 'Please specify one of the commands')
 	.command({
 		command: 'push',
@@ -85,12 +85,23 @@ yargs
 		},
 		handler: API.getDeviceName,
 	})
+	// .command({
+	// 	command: 'remotelog',
+	// 	desc: 'Log',
+	// 	builder(yargs) {
+	// 		yargs // eslint-disable-line
+	// 			.options({ target })
+	// 			.argv
+	// 		;
+	// 	},
+	// 	handler: API.remoteLog,
+	// })
 	.command({
 		command: 'set',
 		desc: `Set config`,
 		builder(yargs) {
 			yargs // eslint-disable-line
-				.usage(`${name} set <key> <value>`)
+				.usage(`$0 set <key> <value>`)
 				.demand(2, 'Please specify key and value')
 				.argv
 			;
@@ -102,7 +113,7 @@ yargs
 		desc: `Get config`,
 		builder(yargs) {
 			yargs // eslint-disable-line
-				.usage(`${name} get <key>`)
+				.usage(`$0 get <key>`)
 				.demand(1, 'Please specify key')
 				.argv
 			;
@@ -114,7 +125,7 @@ yargs
 		desc: `Unset config`,
 		builder(yargs) {
 			yargs // eslint-disable-line
-				.usage(`${name} unset <key>`)
+				.usage(`$0 unset <key>`)
 				.demand(1, 'Please specify key')
 				.argv
 			;
@@ -128,7 +139,7 @@ yargs
 				desc: 'Add device',
 				builder(yargs) {
 					yargs // eslint-disable-line
-						.usage(`${name} devices add <device>`)
+						.usage(`$0 devices add <device>`)
 						.demand(1, 'Please specify device')
 						.argv
 					;
@@ -140,7 +151,7 @@ yargs
 				desc: 'Remove device',
 				builder(yargs) {
 					yargs // eslint-disable-line
-						.usage(`${name} devices remove <device>`)
+						.usage(`$0 devices remove <device>`)
 						.demand(1, 'Please specify device')
 						.argv
 					;
@@ -152,7 +163,7 @@ yargs
 				desc: 'List devices',
 				builder(yargs) {
 					yargs // eslint-disable-line
-						.usage(`${name} devices list`)
+						.usage(`$0 devices list`)
 						.argv
 					;
 				},
@@ -163,7 +174,7 @@ yargs
 				desc: 'Clear all devices',
 				builder(yargs) {
 					yargs // eslint-disable-line
-						.usage(`${name} devices clear`)
+						.usage(`$0 devices clear`)
 						.argv
 					;
 				},
