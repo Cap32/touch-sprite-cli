@@ -1,7 +1,7 @@
 {
   "name": "touch-script-cli",
   "description": "touch-script-cli",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "lib/index",
   "bin": {
     "touch-script-cli": "bin/touch-script.js",
