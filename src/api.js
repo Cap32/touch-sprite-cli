@@ -3,8 +3,9 @@ import conf, { defaultConfig } from './config';
 import { getToken } from './Auth';
 import fetch from 'node-fetch';
 import { ensureTarget } from './utils';
-import { readFile } from 'fs-extra';
+import { lstat, createReadStream } from 'fs-extra';
 import { parse } from 'path';
+import request from 'request';
 
 export async function upload(argv, log = console.log) {
 	try {
@@ -12,19 +13,27 @@ export async function upload(argv, log = console.log) {
 		const clientFilePath = clientFile || `/${parse(file).base}`;
 		const { dir, base } = parse(clientFilePath);
 		const auth = await getToken();
-		const body = await readFile(file, 'utf-8');
-		const res = await fetch(`${ensureTarget(target)}/upload`, {
-			method: 'POST',
-			headers: {
-				auth,
-				root: type,
-				path: dir,
-				filename: base,
-				'Content-Type': 'touchsprite/uploadfile',
-			},
-			body,
+		const stat = await lstat(file);
+		const result = await new Promise((resolve, reject) => {
+			createReadStream(file).pipe(
+				request({
+					url: `${ensureTarget(target)}/upload`,
+					method: 'POST',
+					headers: {
+						auth,
+						root: type,
+						path: dir,
+						filename: base,
+						'Content-Type': 'touchsprite/uploadfile',
+						'Content-Length': stat.size,
+					}
+				}, (err, res, body) => {
+					if (err) { reject(err); }
+					else if (res.statusCode !== 200) { reject(res.statusText); }
+					else { resolve(body); }
+				})
+			);
 		});
-		const result = await res.text();
 		log && log(result);
 		return result === 'ok';
 	}
