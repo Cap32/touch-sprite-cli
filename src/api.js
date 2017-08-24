@@ -4,12 +4,18 @@ import { getToken } from './Auth';
 import fetch from 'node-fetch';
 import { ensureTarget } from './utils';
 import { lstat, createReadStream } from 'fs-extra';
-import { parse } from 'path';
+import { parse, extname } from 'path';
 import request from 'request';
 
 export async function upload(argv, log = console.log) {
 	try {
 		const { target, clientFile, file, type } = argv;
+		const root = (function () {
+			if (type) { return type; }
+			const luaExts = ['.lua', '.luac', '.txt'];
+			const ext = extname(file);
+			return luaExts.indexOf(ext) > -1 ? 'lua' : 'res';
+		}());
 		const clientFilePath = clientFile || `/${parse(file).base}`;
 		const { dir, base } = parse(clientFilePath);
 		const auth = await getToken();
@@ -21,7 +27,7 @@ export async function upload(argv, log = console.log) {
 					method: 'POST',
 					headers: {
 						auth,
-						root: type,
+						root,
 						path: dir,
 						filename: base,
 						'Content-Type': 'touchsprite/uploadfile',

@@ -24,7 +24,6 @@ const upload = {
 		alias: 'T',
 		desc: 'Root type',
 		choices: ['lua', 'res', 'log', 'plugin'],
-		default: 'lua',
 	},
 	clientFile: {
 		alias: 'c',
