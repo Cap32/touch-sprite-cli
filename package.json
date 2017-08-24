@@ -1,12 +1,12 @@
 {
-  "name": "touch-script-cli",
-  "description": "touch-script-cli",
+  "name": "touch-sprite-cli",
+  "description": "touch-sprite-cli",
   "version": "0.0.1",
   "main": "lib/index",
   "bin": {
-    "touch-script-cli": "bin/touch-script.js",
-    "touch-script": "bin/touch-script.js",
-    "tsc": "bin/touch-script.js"
+    "touch-sprite-cli": "bin/touch-sprite.js",
+    "touch-sprite": "bin/touch-sprite.js",
+    "tsc": "bin/touch-sprite.js"
   },
   "files": [
     "*.md",
@@ -14,7 +14,7 @@
     "lib"
   ],
   "scripts": {
-    "cli": "cross-env NODE_ENV=development node bin/touch-script",
+    "cli": "cross-env NODE_ENV=development node bin/touch-sprite",
     "start": "yarn test -- --watchAll",
     "test": "cross-env NODE_ENV=development jest",
     "prebuild": "rimraf lib",
@@ -22,14 +22,14 @@
     "preversion": "yarn test && yarn build"
   },
   "author": "cap32",
-  "repository": "Cap32/touch-script-cli",
+  "repository": "Cap32/touch-sprite-cli",
   "engines": {
     "node": ">=4"
   },
   "keywords": [
-    "touch-script",
+    "touch-sprite",
     "cli",
-    "touch-script-remote"
+    "touch-sprite-remote"
   ],
   "license": "MIT",
   "dependencies": {

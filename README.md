@@ -1,4 +1,4 @@
-# touch-script-cli
+# touch-sprite-cli
 
 触控精灵命令行工具 (非官方)
 
@@ -9,7 +9,7 @@
 先确保已安装 Node.js (>4) 和 npm
 
 ```bash
-npm install -g touch-script-cli
+npm install -g touch-sprite-cli
 ```
 
 
@@ -23,12 +23,12 @@ tsc -h
 ## 集成到 Sublime Text 3
 
 1. 在终端获取 `node` 路径 (macOS/linux 用户 `which node`, windows 用户 `where node`)
-2. 在终端获取 `touch-script-cli` 路径 (macOS/linux 用户 `which tsc`, windows 用户 `where tsc`
-3. 创建 `touch-script.sublime-build` 文件到 Packages 目录，写入：
+2. 在终端获取 `touch-sprite-cli` 路径 (macOS/linux 用户 `which tsc`, windows 用户 `where tsc`
+3. 创建 `touch-sprite.sublime-build` 文件到 Packages 目录，写入：
 
 ```json
 {
-    "cmd": ["<touch-script-cli 路径>", "push", "-f=$file"],
+    "cmd": ["<touch-sprite-cli 路径>", "push", "-f=$file"],
     "selector": "source.lua",
     "path": "<node 路径>"
 }

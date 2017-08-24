@@ -4,8 +4,6 @@ import pkg from '../package.json';
 import updateNotifier from 'update-notifier';
 import API from './apiProxy';
 
-const { name } = pkg;
-
 updateNotifier({ pkg }).notify();
 
 const target = {
