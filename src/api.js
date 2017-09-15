@@ -1,7 +1,7 @@
 
 import conf, { defaultConfig } from './config';
 import * as TSRemoteAPI from 'touch-sprite-remote';
-import { getToken } from './Auth';
+import { getToken, clearAuth } from './Auth';
 
 export async function upload({ target, ...options }, log = console.log) {
 	const result = await TSRemoteAPI.upload(target || conf.get('target'), {
@@ -51,6 +51,7 @@ export function set(argv) {
 	if (key === 'devices') {
 		throw new Error(`Please use \`${name} device\` command`);
 	}
+	clearAuth();
 	conf.set(key, value);
 	console.log(`${key}: ${value}`);
 }
@@ -68,6 +69,7 @@ export function unset(argv) {
 	else {
 		conf.delete(key);
 	}
+	clearAuth();
 	console.log(`Deleted key "${key}"`);
 }
 
@@ -85,6 +87,7 @@ export function addDevice(argv) {
 		devices.push(device);
 		conf.set('devices', devices);
 		console.log(`Added device "${device}"`);
+		clearAuth();
 	}
 	else {
 		console.log(`Device "${device}" exists`);
@@ -99,6 +102,7 @@ export function removeDevice(argv) {
 		devices.splice(index, 1);
 		conf.set('devices', devices);
 		console.log(`Removed device "${device}"`);
+		clearAuth();
 	}
 	else {
 		console.log(`Device "${device}" NOT found`);
@@ -113,5 +117,6 @@ export function listDevice() {
 
 export function clearDevices() {
 	conf.set('devices', []);
+	clearAuth();
 	console.log('Cleared');
 }
