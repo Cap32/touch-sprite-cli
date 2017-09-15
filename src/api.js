@@ -13,10 +13,28 @@ export async function upload({ target, ...options }, log = console.log) {
 }
 
 export async function run({ target }, log = console.log) {
-	const result = await TSRemoteAPI.upload(target || conf.get('target'), {
+	const result = await TSRemoteAPI.run(target || conf.get('target'), {
 		auth: await getToken(),
 	});
 	log && log(result);
+}
+
+export async function stop({ target }) {
+	const result = await TSRemoteAPI.stop(target || conf.get('target'), {
+		auth: await getToken(),
+	});
+	console.log(result);
+}
+
+export async function status({ target }) {
+	const result = await TSRemoteAPI.status(target || conf.get('target'), {
+		auth: await getToken(),
+	});
+	let message = 'Unknown';
+	if (result === 'f00') { message = 'Free'; }
+	else if (result === 'f01') { message = 'Running'; }
+	else if (result === 'f02') { message = 'Recording'; }
+	console.log(message);
 }
 
 export async function push(argv) {

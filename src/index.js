@@ -61,6 +61,32 @@ yargs
 		handler: API.run,
 	})
 	.command({
+		command: 'stop',
+		desc: 'Stop script',
+		builder(yargs) {
+			yargs // eslint-disable-line
+				.options({
+					target,
+				})
+				.argv
+			;
+		},
+		handler: API.stop,
+	})
+	.command({
+		command: 'status',
+		desc: 'Get device status',
+		builder(yargs) {
+			yargs // eslint-disable-line
+				.options({
+					target,
+				})
+				.argv
+			;
+		},
+		handler: API.status,
+	})
+	.command({
 		command: 'upload',
 		desc: 'Upload file',
 		builder(yargs) {
