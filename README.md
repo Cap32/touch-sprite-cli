@@ -26,6 +26,8 @@ tsc <command> [args]
 Commands:
   push        Upload and run script
   run         Run script
+  stop        Stop script
+  status      Get device status
   upload      Upload file
   devicename  Get device name
   set         Set config
@@ -34,8 +36,8 @@ Commands:
   devices     Manage devices
 
 Options:
-  --version   Show version number                      [boolean]
-  -h, --help  Show help                                [boolean]
+  --version   Show version number                              [boolean]
+  -h, --help  Show help                                        [boolean]
 ```
 
 
