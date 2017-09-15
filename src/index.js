@@ -25,9 +25,9 @@ const upload = {
 		desc: 'Root type',
 		choices: ['lua', 'res', 'log', 'plugin'],
 	},
-	clientFile: {
+	remoteFile: {
 		alias: 'c',
-		desc: 'Client file path',
+		desc: 'Remote device file path',
 		type: 'string',
 	},
 };

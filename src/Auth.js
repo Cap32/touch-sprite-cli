@@ -1,42 +1,13 @@
 
-import fetch from 'node-fetch';
+import { fetchAuth } from 'touch-sprite-remote';
 import conf from './config';
-
-const AUTH_API = 'https://storeauth.touchsprite.com/api/openapi';
-
-const fetchAuth = async function fetchAuth() {
-	const { key, devices, valid } = conf.all;
-	const body = JSON.stringify({
-		action: 'getAuth',
-		time: ~~(Date.now() / 1000),
-		key,
-		devices,
-		valid,
-	});
-
-	const res = await fetch(AUTH_API, {
-		method: 'POST',
-		body,
-	});
-
-	if (!res.ok) {
-		throw new Error(res.statusText);
-	}
-
-	const authData = await res.json();
-
-	if (authData.status !== 200) {
-		throw new Error(authData.message);
-	}
-
-	return authData;
-};
 
 export function clearAuth() {
 	conf.set('auth', {});
 }
 
 export async function getToken() {
+	const { key, devices, valid } = conf.all;
 	const { token, expiresAt } = conf.get('auth');
 
 	if (token && expiresAt > Date.now()) {
@@ -45,11 +16,13 @@ export async function getToken() {
 
 	clearAuth();
 
-	const { auth, valid } = await fetchAuth();
+	const { auth, expiresIn } = await fetchAuth({
+		key, devices, valid,
+	});
 
 	conf.set('auth', {
 		token: auth,
-		expiresAt: Date.now() + valid - 2000,
+		expiresAt: Date.now() + (expiresIn * 1000) - 2000,
 	});
 
 	return auth;
