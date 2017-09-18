@@ -75,7 +75,7 @@ export function unset(argv) {
 
 export function get(argv) {
 	const [, key] = argv._;
-	const value = conf.get(key);
+	const value = JSON.stringify(conf.get(key));
 	console.log(`${key}: ${value}`);
 }
 
