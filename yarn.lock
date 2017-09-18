@@ -3354,9 +3354,9 @@ to-fast-properties@^1.0.1:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/to-fast-properties/download/to-fast-properties-1.0.2.tgz#f3f5c0c3ba7299a7ef99427e44633257ade43320"
 
-touch-sprite-remote@^0.2.0:
-  version "0.2.0"
-  resolved "http://registry.npm.taobao.org/touch-sprite-remote/download/touch-sprite-remote-0.2.0.tgz#963d51bc86ca1f871ab4c2fdff15caf6cb63523d"
+touch-sprite-remote@^0.2.1:
+  version "0.2.1"
+  resolved "http://registry.npm.taobao.org/touch-sprite-remote/download/touch-sprite-remote-0.2.1.tgz#d8adaf12208ad92b740379025bf76ab1cdc194dd"
   dependencies:
     empty-functions "^1.0.2"
     fs-extra "^4.0.1"
