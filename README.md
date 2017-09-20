@@ -69,6 +69,11 @@ Options:
 当然，也可以用类似的方法集成到其它 IDE
 
 
+## 相关项目
+
+- [node-touch-sprite-remote](https://github.com/Cap32/node-touch-sprite-remote): Node module API version
+
+
 ## License
 
 MIT
