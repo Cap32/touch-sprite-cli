@@ -5,8 +5,7 @@
   "main": "lib/index",
   "bin": {
     "touch-sprite-cli": "bin/touch-sprite.js",
-    "touch-sprite": "bin/touch-sprite.js",
-    "tsc": "bin/touch-sprite.js"
+    "touch-sprite": "bin/touch-sprite.js"
   },
   "files": [
     "*.md",
